@@ -40,17 +40,17 @@ $tb-mat-indigo: (
     50: rgba(black, 0.87),
     100: rgba(black, 0.87),
     200: rgba(black, 0.87),
-    300: white,
-    400: white,
-    500: white,
-    600: white,
-    700: white,
-    800: white,
-    900: white,
+    300: black,
+    400: black,
+    500: black,
+    600: black,
+    700: black,
+    800: black,
+    900: black,
     A100: rgba(black, 0.87),
-    A200: white,
-    A400: white,
-    A700: white,
+    A200: black,
+    A400: black,
+    A700: black,
   )
 );
 
@@ -102,10 +102,10 @@ $tb-dark-mat-indigo: (
     300: rgba(black, 0.87),
     400: rgba(black, 0.87),
     500: map_get($tb-mat-indigo, 900),
-    600: white,
-    700: white,
-    800: white,
-    900: white,
+    600: black,
+    700: black,
+    800: black,
+    900: black,
     A100: rgba(black, 0.87),
     A200: rgba(black, 0.87),
     A400: rgba(black, 0.87),
@@ -119,12 +119,12 @@ $tb-dark-theme-background: (
   status-bar: black,
   app-bar:    map_get($tb-dark-mat-indigo, 900),
   background: map_get($tb-dark-mat-indigo, 800),
-  hover:      rgba(white, 0.04),
+  hover:      rgba(black, 0.04),
   card:       map_get($tb-dark-mat-indigo, 800),
   dialog:     map_get($tb-dark-mat-indigo, 800),
-  disabled-button: rgba(white, 0.12),
+  disabled-button: rgba(black, 0.12),
   raised-button: map-get($tb-dark-mat-indigo, 50),
-  focused-button: rgba(white, 0.12),
+  focused-button: rgba(black, 0.12),
   selected-button: map_get($tb-dark-mat-indigo, 900),
   selected-disabled-button: map_get($tb-dark-mat-indigo, 800),
   disabled-button-toggle: black,
@@ -264,5 +264,5 @@ $tb-dark-theme: map_merge($tb-dark-theme, $color);
 }
 
 .tb-dark {
-  @include mat.all-component-colors($tb-dark-theme);
+  @include mat.all-component-colors($tb-dark-theme)
 }

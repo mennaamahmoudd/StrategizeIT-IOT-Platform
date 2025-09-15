@@ -1,0 +1,131 @@
+// Tailwind-like breakpoints
+$sm: 640px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=PT+Sans:wght@400;700&display=swap');
+
+.home-split-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: url('./img.jpg') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.563);
+    z-index: 1;
+  }
+
+  /* 🔹 Fix: Logo is defined at the container level */
+  .header-logo {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 3;
+    img {
+      width: 170px;   // fixed small size
+      height: auto;
+      display: block;
+    }
+  }
+
+  .content-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    text-align: center;
+    padding: 2rem;
+    margin: 0 auto;
+
+
+    /* Main headline */
+    .main-headline {
+      font-size: 2.25rem; // text-4xl → 36px
+      font-weight: 600;
+      line-height: 1.1;
+      margin-top:2rem;
+      margin-bottom: 1.9rem;
+      color:#fff7f7;
+
+      @media (min-width: $sm) {
+        font-size: 5rem; // text-5xl → 48px
+      }
+      @media (min-width: $md) {
+        font-size: 5.75rem; // text-6xl → 60px
+      }
+      @media (min-width: $lg) {
+        font-size: 6.5rem; // text-7xl → 72px
+      }
+    }
+
+    /* Tagline */
+    .platform-subtitle {
+      font-family: 'PT Sans', sans-serif; // Subtitle font
+      font-size: 1.875rem; // text-3xl → 30px
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      color:#fff7f7;
+
+
+      @media (min-width: $sm) {
+        font-size: 4.9rem; // text-4xl → 36px
+      }
+      @media (min-width: $md) {
+        font-size: 5.3rem; // text-5xl → 48px
+      }
+      @media (min-width: $lg) {
+        font-size: 5.9rem; // text-6xl → 60px
+      }
+    }
+
+    /* Descriptive paragraph */
+    .description {
+      font-family: 'PT Sans', sans-serif;
+      font-size: 1.7rem; // text-lg → 18px
+      margin-top: 2.5rem;
+      color:#fff7f7;
+      line-height: 1.4;
+
+    .description-container {
+        max-width: 3000px;  // set the width you want
+        margin: 0 auto;    // center horizontally
+    }
+
+      @media (min-width: $md) {
+        font-size: 1.5rem; // text-xl → 20px
+      }
+    }
+
+    /* Get Started button */
+    .login-button {
+      font-size: 2rem; // text-lg → 18px
+      font-weight: 400;
+      padding: 31px 47px;
+      border-radius: 0.75rem;
+      border: 2px solid #e53539;
+      background-color: transparent;
+      color: #fcefef;
+      transition: all 0.3s ease;
+
+
+      &:hover {
+        background-color: #e53539;
+        color: #fafafa;
+      }
+    }
+
+  }
+}

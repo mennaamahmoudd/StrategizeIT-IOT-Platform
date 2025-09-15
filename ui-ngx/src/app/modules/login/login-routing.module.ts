@@ -28,7 +28,7 @@ import { LinkExpiredComponent } from '@modules/login/pages/login/link-expired.co
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '', //changed from 'login' to ''
     component: LoginComponent,
     data: {
       title: 'login.login',
