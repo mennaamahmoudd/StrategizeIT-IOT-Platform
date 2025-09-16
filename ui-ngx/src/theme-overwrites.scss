@@ -2,8 +2,17 @@
  * Copyright © 2016-2025 The Thingsboard Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 @use '@angular/material' as mat;
 
 @mixin theme-overwrites($primary, $config-or-theme) {
@@ -12,7 +21,6 @@
   @include _mat-icon-overwrites();
 }
 
-/* ---------------- Form Field Overwrites ---------------- */
 @mixin _mat-form-field-overwrites($primary, $config-or-theme) {
   .mat-mdc-form-field.mat-form-field-appearance-fill {
     .mdc-text-field--filled, .mat-mdc-form-field-focus-overlay {
@@ -29,235 +37,393 @@
       background-color: transparent;
     }
     .mdc-text-field--filled {
-      &:before { opacity: 0.03; }
+      &:before {
+        opacity: 0.03;
+      }
       &:not(.mdc-text-field--disabled) {
-        &:before { opacity: 0.06; }
+        &:before {
+          opacity: 0.06;
+        }
         background-color: transparent;
       }
     }
-    .mat-mdc-form-field-focus-overlay &:before { opacity: 0.87; }
+    .mat-mdc-form-field-focus-overlay {
+      &:before {
+        opacity: 0.87;
+      }
+    }
   }
-  .mat-mdc-form-field .mat-mdc-form-field-hint-wrapper { color: #333a3f; }
+  .mat-mdc-form-field {
+    .mat-mdc-form-field-hint-wrapper {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
 }
 
-/* ---------------- Button Overwrites ---------------- */
 @mixin _mat-button-overwrites($primary, $config-or-theme) {
   .mat-toolbar {
     .mat-mdc-outlined-button {
       --mdc-outlined-button-outline-color: inherit;
-      &:not(:disabled) { border-color: inherit; }
+      &:not(:disabled) {
+        border-color: inherit;
+      }
     }
   }
 }
 
-/* ---------------- Icon Overwrites ---------------- */
 @mixin _mat-icon-overwrites() {
   .mat-icon, .mat-icon.mat-primary, .mat-icon.mat-accent, .mat-icon.mat-warn {
-    color: var(--mat-icon-color);
+    color: black;
   }
 }
-
-/* ---------------- Sidebar & Toolbar Styles ---------------- */
-
-/* Default color + transition for icons and text */
-.tb-side-menu,
-.mat-toolbar {
-  mat-icon,
-  span,
-  a,
-  .mat-list-text {
-    color: #000000;          // default black
-    transition: color 0.3s;
-  }
+.tb-default .mat-mdc-unelevated-button.mat-primary{
+  background-color: transparent;
 }
-
-/* Sidebar: hover on entire item changes icon + text */
-.tb-side-menu .mat-mdc-button,
-.tb-side-menu .mat-list-item {
-  display: flex;
-  align-items: center;
-  color: inherit;
-  transition: background-color 0.3s, color 0.3s;
-
-  mat-icon,
-  .mat-list-text,
-  span {
-    color: inherit;
-    transition: color 0.3s;
-  }
-
-  &:hover {
-    color: #FF0000;                 // red text & icon
-    background-color: rgba(255,0,0,0.1); // subtle hover background
-    border-radius: 4px;
-  }
+// .mat-mdc-button .mdc-button__label, .mat-mdc-button .mat-icon, .mat-mdc-unelevated-button .mdc-button__label, .mat-mdc-unelevated-button .mat-icon, .mat-mdc-raised-button .mdc-button__label, .mat-mdc-raised-button .mat-icon, .mat-mdc-outlined-button .mdc-button__label, .mat-mdc-outlined-button .mat-icon{
+//   color: black;
+// }
+.forgot-password .mat-mdc-button .mdc-button__label{
+  color: black;
 }
-
-/* Sidebar: active/open item */
-.tb-side-menu .mat-list-item.active {
-  background-color: #FF0000;        // solid red background
-  border-radius: 4px;
-  color: #FFFFFF;                    // text & icons white
-
-  mat-icon,
-  .mat-list-text {
-    color: #FFFFFF;
-  }
-}
-
-/* Toolbar: hover on entire button changes icon + text */
-.mat-toolbar .mat-mdc-button,
-.mat-toolbar .mat-toolbar-row button,
-.mat-toolbar .mat-toolbar-row a {
-  display: flex;
-  align-items: center;
-  color: inherit;
-
-  mat-icon,
-  span {
-    color: inherit;
-    transition: color 0.3s;
-  }
-
-  &:hover {
-    color: #FF0000;
-  }
-}
-
-/* General hover for icons + text anywhere */
-.hover-red {
-  display: inline-flex;
-  align-items: center;
-  color: #000000;
-  transition: color 0.3s;
-
-  mat-icon,
-  span {
-    transition: color 0.3s;
-  }
-
-  &:hover {
-    color: #FF0000;
-  }
-}
-
-/* Apply hover-red to sidebar, toolbar, and home cards */
-.tb-side-menu .mat-list-item,
-.mat-toolbar .mat-toolbar-row span,
-.mat-dashboard-card {
-  @extend .hover-red;
-}
-
-/* Force all mat-icons default black */
-.mat-icon {
-  color: #000000;
-}
-
-/* Accent buttons in dark theme */
-.tb-dark .mat-mdc-raised-button.mat-accent {
-  background-color: #e73639;
-}
-
-/* Toolbar buttons icon black */
-.tb-default .mat-toolbar.mat-primary button.mat-mdc-icon-button .mat-icon,
-.tb-dark .mat-toolbar.mat-primary button.mat-mdc-icon-button .mat-icon {
-  color: #000000;
-}
-
-/* Toolbar hover effect: icon + text */
-.mat-toolbar {
-  color: #000000;
-
-  mat-icon,
-  span,
-  a,
-  button {
-    color: #000000;
-    transition: color 0.3s;
-  }
-
-  mat-icon:hover,
-  span:hover,
-  a:hover,
-  button:hover {
-    color: #FF0000;
-  }
-
-  .mat-mdc-button,
-  .mat-toolbar-row button,
-  .mat-toolbar-row a {
-    display: flex;
-    align-items: center;
-    color: inherit;
-
-    mat-icon,
-    span {
-      color: inherit;
-      transition: color 0.3s;
-    }
-
-    &:hover {
-      color: #FF0000;
-    }
-  }
-}
-
-/* Unelevated primary button */
-.tb-default .mat-mdc-unelevated-button.mat-primary {
+.mat-mdc-raised-button .mat-mdc-button-touch-target{
   background-color: #e53539;
-  color: #f5f5f5;
 }
+// button.loginn-button.mat-mdc-raised-button {
+//   background-color: transparent!important;
+// }
 
-/* Notification badge color */
-.mat-icon.notranslate.mat-badge.material-icons.mat-badge-warn.mat-ligature-font.mat-icon-no-color.mat-badge-overlap.mat-badge-above.mat-badge-after.mat-badge-small {
-  color: #000000;
+#username-input, #password-input{
+  color: black;
 }
-
-/* Toolbar hover for all items inside toolbar */
-.mat-mdc-button-touch-target {
-  color: #000000;
-}
-
-/* Force black color for specific icons and hover red */
-.mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color {
-  color: #000000 !important;
-  &:hover { color: #e53539 !important; }
-}
-.mat-mdc-focus-indicator{
-  color: #e53539 !important;
-}
-
-/* Active/selected sidebar tab */
-.tb-side-menu .mat-mdc-list-item--activated,
-.tb-side-menu .mat-mdc-list-item.mat-mdc-list-item-interactive[aria-selected="true"] {
-  background-color: #e53539 !important;   // red background
-  color: #FFFFFF !important;              // white text/icons
-
-  mat-icon,
-  .mat-list-text,
-  span {
-    color: #FFFFFF !important;            // make icons & text white for contrast
-  }
-}
-
-#mat-badge-content-0 {
-  background-color: #e53539;
-  color: #f5f5f5;
-}
-
 .tb-logo-title {
-    height: 100px!important;
-    width: 200px !important;
+  height: 150px !important;
+  width: 300px !important;
+}
+// .mat-mdc-raised-button .mat-mdc-button-touch-target .mat-mdc-button-ripple{
+//   --mdc-protected-button-container-color: #e53539; // new background
+// }
+
+tb-login,
+tb-login .tb-login-content {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; // required for ::before
+}
+// ----------------
+tb-login .tb-login-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url('app/modules/welcome-page/img.jpg'); // use background-image
+  background-size: cover;        // make it cover the entire container
+  background-position: center;   // center the image
+  background-repeat: no-repeat;  // prevent tiling
+  filter: blur(2px);             // blur the image
+  // background-color: rgba(255, 255, 255, 0.623); // optional neutral overlay
+  background-blend-mode: overlay;
+  z-index: 1;
 }
 
-.mdc-button__label,
-.ng-tns-c508571215-25,
-.ng-tns-c508571215-24,
-.ng-star-inserted {
+
+
+// -----------------------
+tb-login .tb-login-content mat-card {
+  position: relative;
+  z-index: 2; // keep form above background
+}
+
+.mat-icon{
   color: black !important;
 }
-
-.mdc-line-ripple {
-  border-bottom-color: black !important;
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
+    color: rgb(0, 0, 0)!important;
 }
 
+.mat-mdc-card,
+.mdc-card {
+  background-color: rgba(255, 255, 255, 0.685); // white with 80% opacity
+  backdrop-filter: blur(4px); // optional: adds a subtle blur of the background behind
+  border-radius: 8px; // optional: nicer rounded corners
+}
+
+
+
+// /**
+//  * Copyright © 2016-2025 The Thingsboard Authors
+//  * Licensed under the Apache License, Version 2.0 (the "License");
+//  */
+
+// @use '@angular/material' as mat;
+
+// /* ---------------- Theme Mixins ---------------- */
+// @mixin theme-overwrites($primary, $config-or-theme) {
+//   @include _mat-form-field-overwrites($primary, $config-or-theme);
+//   @include _mat-button-overwrites($primary, $config-or-theme);
+//   @include _mat-icon-overwrites();
+// }
+
+// /* ---------------- Form Field Overwrites ---------------- */
+// @mixin _mat-form-field-overwrites($primary, $config-or-theme) {
+//   .mat-mdc-form-field.mat-form-field-appearance-fill {
+//     .mdc-text-field--filled,
+//     .mat-mdc-form-field-focus-overlay {
+//       &:before {
+//         content: "";
+//         display: block;
+//         width: 100%;
+//         height: 100%;
+//         position: absolute;
+//         left: 0;
+//         top: 0;
+//         background-color: mat.m2-get-color-from-palette($primary);
+//       }
+//       background-color: transparent;
+//     }
+
+//     .mdc-text-field--filled {
+//       &:before { opacity: 0.03; }
+//       &:not(.mdc-text-field--disabled) {
+//         &:before { opacity: 0.06; }
+//         background-color: transparent;
+//       }
+//     }
+
+//     .mat-mdc-form-field-focus-overlay &:before { opacity: 0.87; }
+//   }
+
+//   .mat-mdc-form-field .mat-mdc-form-field-hint-wrapper {
+//     color: #333a3f;
+//   }
+// }
+
+// /* ---------------- Button Overwrites ---------------- */
+// @mixin _mat-button-overwrites($primary, $config-or-theme) {
+//   .mat-toolbar {
+//     .mat-mdc-outlined-button {
+//       --mdc-outlined-button-outline-color: inherit;
+//       &:not(:disabled) { border-color: inherit; }
+//     }
+//   }
+// }
+
+// /* ---------------- Icon Overwrites ---------------- */
+// @mixin _mat-icon-overwrites() {
+//   .mat-icon,
+//   .mat-icon.mat-primary,
+//   .mat-icon.mat-accent,
+//   .mat-icon.mat-warn {
+//     color: var(--mat-icon-color);
+//   }
+// }
+
+// /* =====================================================
+//    Base Colors & Defaults
+//    ===================================================== */
+// .mat-icon {
+//   color: #000000; // Default black for all icons
+// }
+
+// .tb-side-menu,
+// .mat-toolbar {
+//   mat-icon,
+//   span,
+//   a,
+//   .mat-list-text {
+//     color: #000000;
+//     transition: color 0.3s;
+//   }
+// }
+
+// /* =====================================================
+//    Sidebar Styles
+//    ===================================================== */
+// .tb-side-menu .mat-mdc-button,
+// .tb-side-menu .mat-list-item {
+//   display: flex;
+//   align-items: center;
+//   color: inherit;
+//   transition: background-color 0.3s, color 0.3s;
+
+//   mat-icon,
+//   .mat-list-text,
+//   span {
+//     color: inherit;
+//     transition: color 0.3s;
+//   }
+
+//   &:hover {
+//     color: #FF0000;
+//     background-color: rgba(255, 0, 0, 0.1);
+//     border-radius: 4px;
+//   }
+// }
+
+// /* Active/selected sidebar tab */
+// .tb-side-menu .mat-mdc-list-item--activated,
+// .tb-side-menu .mat-list-item.active,
+// .tb-side-menu .mat-mdc-list-item.mat-mdc-list-item-interactive[aria-selected="true"] {
+//   background-color: #e53539 !important;
+//   color: #FFFFFF !important;
+//   border-radius: 4px;
+
+//   mat-icon,
+//   .mat-list-text,
+//   span {
+//     color: #FFFFFF !important;
+//   }
+// }
+
+// /* =====================================================
+//    Toolbar Styles
+//    ===================================================== */
+// .mat-toolbar {
+//   color: #000000;
+
+//   mat-icon,
+//   span,
+//   a,
+//   button {
+//     color: #000000;
+//     transition: color 0.3s;
+//   }
+
+//   mat-icon:hover,
+//   span:hover,
+//   a:hover,
+//   button:hover {
+//     color: #FF0000;
+//   }
+
+//   .mat-mdc-button,
+//   .mat-toolbar-row button,
+//   .mat-toolbar-row a {
+//     display: flex;
+//     align-items: center;
+//     color: inherit;
+
+//     mat-icon,
+//     span {
+//       color: inherit;
+//       transition: color 0.3s;
+//     }
+
+//     &:hover {
+//       color: #FF0000;
+//     }
+//   }
+// }
+
+// /* =====================================================
+//    Hover Effects (Reusable)
+//    ===================================================== */
+// .hover-red {
+//   display: inline-flex;
+//   align-items: center;
+//   color: #000000;
+//   transition: color 0.3s;
+
+//   mat-icon,
+//   span {
+//     transition: color 0.3s;
+//   }
+
+//   &:hover {
+//     color: #FF0000;
+//   }
+// }
+
+// /* Apply hover-red utility */
+// .tb-side-menu .mat-list-item,
+// .mat-toolbar .mat-toolbar-row span,
+// .mat-dashboard-card {
+//   @extend .hover-red;
+// }
+
+// /* =====================================================
+//    Theming: Dark/Default
+//    ===================================================== */
+// .tb-default .mat-mdc-unelevated-button.mat-primary {
+//   background-color: #e53539;
+//   color: #f5f5f5;
+// }
+
+// .tb-dark .mat-mdc-raised-button.mat-accent {
+//   background-color: #e73639;
+// }
+
+// .tb-default .mat-toolbar.mat-primary button.mat-mdc-icon-button .mat-icon,
+// .tb-dark .mat-toolbar.mat-primary button.mat-mdc-icon-button .mat-icon {
+//   color: #000000;
+// }
+
+// /* =====================================================
+//    Badges & Notifications
+//    ===================================================== */
+// #mat-badge-content-0 {
+//   background-color: #e53539;
+//   color: #f5f5f5;
+// }
+
+// .mat-icon.notranslate.mat-badge.material-icons.mat-badge-warn.mat-ligature-font.mat-icon-no-color.mat-badge-overlap.mat-badge-above.mat-badge-after.mat-badge-small {
+//   color: #000000;
+// }
+
+// /* =====================================================
+//    Misc Overrides
+//    ===================================================== */
+// .tb-logo-title {
+//   height: 100px !important;
+//   width: 200px !important;
+// }
+
+// .mdc-button__label,
+// .ng-tns-c508571215-25,
+// .ng-tns-c508571215-24,
+// .ng-star-inserted {
+//   color: black !important;
+// }
+
+// .mdc-line-ripple {
+//   border-bottom-color: black !important;
+// }
+
+// /*    =   */
+
+
+// /*    =   */
+// .mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color {
+//   color: #000000 !important;
+//   &:hover {
+//     color: #e53539 !important;
+//   }
+// }
+
+// /* Sidebar active/open item */
+// .tb-side-menu .mat-mdc-list-item--activated,
+// .tb-side-menu .mat-mdc-list-item.mat-mdc-list-item-interactive[aria-selected="true"],
+// .tb-side-menu .mat-list-item.active,            // Angular routerLinkActive
+// .tb-side-menu .mat-mdc-button.active {          // If sidebar uses mat-button
+//   background-color: #e53539 !important;   // red background
+//   border-radius: 4px;
+//   color: #FFFFFF !important;
+
+//   mat-icon,
+//   .mat-list-text,
+//   span {
+//     color: #FFFFFF !important;
+//   }
+// }
+
+// .mdc-filled-text-field-input-text-color{
+//   color:#000000;
+// }
+
+// .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input{
+//   color:#000000;
+// }

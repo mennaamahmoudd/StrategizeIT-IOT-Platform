@@ -110,22 +110,16 @@ $xl: 1280px;
     }
 
     /* Get Started button */
-    .login-button {
+    .loginn-button {
       font-size: 2rem; // text-lg → 18px
       font-weight: 400;
       padding: 31px 47px;
       border-radius: 0.75rem;
       border: 2px solid #e53539;
-      background-color: transparent;
-      color: #fcefef;
+      background-color: #e53539;
+      color: #fffdfd;
       transition: all 0.3s ease;
-
-
-      &:hover {
-        background-color: #e53539;
-        color: #fafafa;
       }
     }
-
-  }
 }
+

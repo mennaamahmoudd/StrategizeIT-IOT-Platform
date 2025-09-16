@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' }, // default route goes to welcome
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'login', loadChildren: () => import('@modules/login/login.module').then(m => m.LoginModule) },
-  { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) }
+  { path: '', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) }
   // { path: '**', redirectTo: 'welcome' } // fallback
 ];
 

@@ -25,8 +25,7 @@ export class LogoComponent {
 
   logo = 'assets/logo_title_white.svg';
 
-  gotoThingsboard(): void {
-    window.open('https://thingsboard.io', '_blank');
+  gotoStrategizeIt(): void {
+    window.open('https://edu.strategizeit.us/?lang=ar', '_blank');
   }
-
 }
